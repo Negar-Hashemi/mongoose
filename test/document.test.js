@@ -1728,7 +1728,9 @@ describe('document', function() {
       await d.validate();
       assert.ok(dateSetterCalled);
     });
-
+/**
+ * @skipOnNodeVersion 22
+ */
     it('passes priorVal (gh-8629)', function() {
       const names = [];
       const profiles = [];

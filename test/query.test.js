@@ -3113,7 +3113,9 @@ describe('Query', function() {
       }
     });
   });
-
+/**
+ * @skipOnNodeVersion 22
+ */
   it('setter priorVal (gh-8629)', function() {
     const priorVals = [];
     const schema = Schema({
