@@ -31,9 +31,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Ensure Babel presets used by sanitizer
+        run: |
+          npm i -D @babel/core @babel/preset-env @babel/preset-typescript
+          npm i -D @babel/register
+      - name: Ensure Mocha present
+        run: npm i -D mocha
+
       - name: Testing on OS (${{ matrix.os }}) with Node.js (version ${{ matrix.node-version }}) attempt ${{ matrix.attempt }}
         run: |
           echo "Run attempt: ${{ matrix.attempt }}"
-          npm test
-
-    continue-on-error: false
+          node -e "require('js-sanitizer')"  # or your setup step
+          npx mocha --exit ./test/*.test.js
